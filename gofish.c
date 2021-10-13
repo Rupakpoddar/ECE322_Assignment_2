@@ -5,7 +5,7 @@
 
 int main(int args, char* argv[])
 {
-  fprintf(stdout, "Put your code here.\n");
+  fprintf(stdout, "----- Go Fish Begins -----\n");
 
   struct player* user = (struct player*)malloc(sizeof(struct player));
   struct player* computer = (struct player*)malloc(sizeof(struct player));
@@ -85,6 +85,27 @@ int main(int args, char* argv[])
 
   shuffle();
   */
+
+  /*
+  for(int i=0; i<5; i++){
+    char rank = computer_play(user);
+    //computer_play(user);
+    //printf("%s\n", computer_play(user));
+    //strcpy(rank, *computer_play(user));
+    printf("%c\n", rank);
+  }
+  */
+
+  char check = user_play(user);
+  printf("%c\n", check);
+
+  /*
+  char testRank[3];
+  strcpy(testRank, "10");
+  int i = search(user, testRank);
+  printf("%d\n", i);
+  */
+
 
   free(user);
   free(computer);

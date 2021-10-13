@@ -36,9 +36,11 @@ int shuffle(){
     if (rank_index == 8) {
       deck_instance.list[i].rank[0] = '1';
       deck_instance.list[i].rank[1] = '0';
+      deck_instance.list[i].rank[2] = '\0';
     } else {
         deck_instance.list[i].rank[0] = Ranks[rank_index];
-        //deck_instance.list[i].rank[1] = '\0';
+        deck_instance.list[i].rank[1] = '\0';
+        deck_instance.list[i].rank[2] = '\0';
     }
   }
   /*

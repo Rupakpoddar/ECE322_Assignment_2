@@ -1,7 +1,5 @@
 #include "card.h"
 #include "player.h"
-#include <stdio.h>
-#include <string.h>
 
 /*
  * Function: add_card
@@ -227,7 +225,28 @@ int reset_player(struct player* target){
  *   Rank: return a valid selected rank
  */
 char computer_play(struct player* target){
-
+  srand(time(0));
+  char Ranks[13] = {'2', '3', '4', '5', '6', '7', '8', '9', '0', 'J'
+        ,'Q', 'K', 'A'};
+  while(1){
+      int Random = rand() % 13;
+      char RandomRank[3];
+      if(Random == 8){
+        strcpy(RandomRank, "10");
+      }else{
+        RandomRank[0] = Ranks[Random];
+        RandomRank[1] = '\0';
+        RandomRank[2] = '\0';
+      }
+      int i = search(target, RandomRank);
+      //printf("%d\n", i);
+      if(i == 1){
+        //printf("Hello\n");
+        //printf("%s\n", RandomRank);
+        //return RandomRank;
+        return Ranks[Random];
+      }
+  }
 }
 
 /*
@@ -244,5 +263,23 @@ char computer_play(struct player* target){
  *   returns: return a valid selected rank
  */
 char user_play(struct player* target){
-
+  char input[3];
+  printf("Enter a rank that you wish to play: ");
+  scanf("%s", input);
+  //printf("%s\n", input);
+  int i = search(target, input);
+  while(i == 0){
+    printf("Error - must have at least one card from rank to play\n");
+    printf("Enter a rank that you wish to play: ");
+    scanf("%s", input);
+    i = search(target, input);
+  }
+  char toReturn;
+  if(strcmp(input, "10") == 0){
+    toReturn = '0';
+  }
+  else{
+    toReturn = input[0];
+  }
+  return toReturn;
 }
