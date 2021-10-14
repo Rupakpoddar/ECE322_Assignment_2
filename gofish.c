@@ -10,6 +10,7 @@ int main(int args, char* argv[])
   struct player* user = (struct player*)malloc(sizeof(struct player));
   struct player* computer = (struct player*)malloc(sizeof(struct player));
 
+  /*
   struct card* temp1 = (struct card*)malloc(sizeof(struct card));
   struct card* temp2 = (struct card*)malloc(sizeof(struct card));
   struct card* temp3 = (struct card*)malloc(sizeof(struct card));
@@ -37,7 +38,7 @@ int main(int args, char* argv[])
   val = add_card(user, temp3);
   val = add_card(user, temp4);
   val = add_card(user, temp5);
-
+  */
   /*
   struct hand* temp_hand = (struct hand*)malloc(sizeof(struct hand));
   temp_hand = user->card_list;
@@ -82,8 +83,6 @@ int main(int args, char* argv[])
 
   int isOver = game_over(user);
   printf("Is Over: %d\n", isOver);
-
-  shuffle();
   */
 
   /*
@@ -96,8 +95,8 @@ int main(int args, char* argv[])
   }
   */
 
-  char check = user_play(user);
-  printf("%c\n", check);
+  //char check = user_play(user);
+  //printf("%c\n", check);
 
   /*
   char testRank[3];
@@ -106,12 +105,25 @@ int main(int args, char* argv[])
   printf("%d\n", i);
   */
 
+  shuffle();
+  deal_player_cards(user);
+  deal_player_cards(user);
+  deal_player_cards(user);
+  struct hand* temp_hand = (struct hand*)malloc(sizeof(struct hand));
+  temp_hand = user->card_list;
+  printf("\n");
+  for(int i = 0; i < user->hand_size; i++){
+    printf("%s%c\n", temp_hand->top.rank, temp_hand->top.suit);
+    temp_hand = temp_hand->next;
+  }
 
+  reset_player(user);
+  reset_player(computer);
   free(user);
   free(computer);
-  free(temp1);
-  free(temp2);
-  free(temp3);
-  free(temp4);
-  free(temp5);
+  //free(temp1);
+  //free(temp2);
+  //free(temp3);
+  //free(temp4);
+  //free(temp5);
 }

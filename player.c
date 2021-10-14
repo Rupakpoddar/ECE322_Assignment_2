@@ -210,7 +210,16 @@ int game_over(struct player* target){
  *   Return: 0 if no error, and non-zero on error.
  */
 int reset_player(struct player* target){
-
+  struct hand* temp_hand = target->card_list;
+  while(temp_hand != NULL){
+      //printf("Free\n");
+      struct hand* copy_hand = temp_hand;
+      free(copy_hand);
+      temp_hand = temp_hand->next;
+    }
+    strcpy(target->book, "");
+    target->hand_size = 0;
+    return 0;
 }
 
 /*
