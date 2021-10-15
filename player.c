@@ -92,7 +92,7 @@ char check_add_book(struct player* target){
   struct hand* temp_hand = target->card_list;
   while(temp_hand != NULL){
     int i = 0;
-    char rank[2];
+    char rank[3];
     strcpy(rank, temp_hand->top.rank);
     struct hand* new_temp_hand = target->card_list;
     while(new_temp_hand != NULL){
@@ -108,8 +108,12 @@ char check_add_book(struct player* target){
           remove_card(target, toRemove);
           free(toRemove);
         }
-        strcat(target->book, rank);
-        return '1';
+        if(strcmp(rank, "10") == 0){
+          strcat(target->book, "0");
+        }else{
+          strcat(target->book, rank);
+        }
+        return rank[0];
       }
       new_temp_hand = new_temp_hand->next;
     }
