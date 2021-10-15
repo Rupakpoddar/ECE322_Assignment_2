@@ -273,13 +273,13 @@ char computer_play(struct player* target){
  */
 char user_play(struct player* target){
   char input[3];
-  printf("Enter a rank that you wish to play: ");
+  printf("Player 1's turn, enter a Rank: ");
   scanf("%s", input);
   //printf("%s\n", input);
   int i = search(target, input);
   while(i == 0){
     printf("Error - must have at least one card from rank to play\n");
-    printf("Enter a rank that you wish to play: ");
+    printf("Player 1's turn, enter a Rank: ");
     scanf("%s", input);
     i = search(target, input);
   }

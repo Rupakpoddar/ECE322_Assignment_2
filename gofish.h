@@ -6,4 +6,8 @@
    for gofish.h here.
 */
 
+void displayHand(struct player* target);
+
+void displayBook(struct player* target, int playernum);
+
 #endif

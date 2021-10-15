@@ -65,8 +65,11 @@ int shuffle(){
  *  returns: 0 if no error, and non-zero on error
  */
 int deal_player_cards(struct player* target){
-  add_card(target, &(deck_instance.list[deck_instance.top_card]));
-  deck_instance.top_card--;
+  for(int i=0; i<7; i++){
+    add_card(target, &(deck_instance.list[deck_instance.top_card]));
+    deck_instance.top_card--;
+  }
+  return 0;
 }
 
 /*
@@ -78,7 +81,8 @@ int deal_player_cards(struct player* target){
  *  returns: pointer to the top card on the deck.
  */
 struct card* next_card( ){
-
+  deck_instance.top_card--;
+  return &deck_instance.list[deck_instance.top_card+1];
 }
 
 /*
@@ -89,5 +93,5 @@ struct card* next_card( ){
  *  returns: number of cards left in the deck.
  */
 size_t deck_size( ){
-
+  return (size_t)deck_instance.top_card;
 }
