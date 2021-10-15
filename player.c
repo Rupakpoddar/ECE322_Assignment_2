@@ -1,5 +1,6 @@
 #include "card.h"
 #include "player.h"
+#include "deck.h"
 
 /*
  * Function: add_card
@@ -218,6 +219,7 @@ int reset_player(struct player* target){
   while(temp_hand != NULL){
       //printf("Free\n");
       struct hand* copy_hand = temp_hand;
+      remove_card(target, &copy_hand->top);
       free(copy_hand);
       temp_hand = temp_hand->next;
     }
@@ -241,6 +243,12 @@ char computer_play(struct player* target){
   srand(time(0));
   char Ranks[13] = {'2', '3', '4', '5', '6', '7', '8', '9', '0', 'J'
         ,'Q', 'K', 'A'};
+  if(target->hand_size == 0){
+    printf("Player 2 ran out of cards. Drawing a card from deck.\n");
+    struct card* newCard = next_card();
+    printf("\t- Player 2 draws %s%c\n", newCard->rank, newCard->suit);
+    add_card(target, newCard);
+  }
   while(1){
       int Random = rand() % 13;
       char RandomRank[3];
@@ -277,6 +285,12 @@ char computer_play(struct player* target){
  */
 char user_play(struct player* target){
   char input[3];
+  if(target->hand_size == 0){
+    printf("Player 1 ran out of cards. Drawing a card from deck.\n");
+    struct card* newCard = next_card();
+    printf("\t- Player 1 draws %s%c\n", newCard->rank, newCard->suit);
+    add_card(target, newCard);
+  }
   printf("Player 1's turn, enter a Rank: ");
   scanf("%s", input);
   //printf("%s\n", input);

@@ -52,6 +52,7 @@ int shuffle(){
 
   return 0;
   */
+  return 0;
 }
 
 /*
@@ -82,6 +83,10 @@ int deal_player_cards(struct player* target){
  */
 struct card* next_card( ){
   deck_instance.top_card--;
+  if(deck_instance.top_card < -1){
+    printf("The deck ran out of cards, press ctrl+c to exit.\n");
+    while(1){}
+  }
   return &deck_instance.list[deck_instance.top_card+1];
 }
 
